@@ -1,6 +1,6 @@
 # Defacto İndirim Takip Uygulaması
 
-Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya sunan ve bu bilgileri Excel dosyasına kaydeden bir Flask uygulamasıdır. Ayrıca, daha önce kaydedilmiş ürünlerin indirim durumunu kontrol etme özelliği de bulunmaktadır.
+Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya sunan ve bu bilgileri Excel dosyasına kaydeden bir Flask uygulamasıdır. Ayrıca, daha önce kaydedilmiş ürünlerin indirim durumunu kontrol etme özelliği de bulunmaktadır. Bu proje [mrcbrbn5361/defacto-discount-detector](https://github.com/mrcbrbn5361/defacto-discount-detector) GitHub deposunda bulunmaktadır.
 
 ## Proje Detayları
 
@@ -17,21 +17,25 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
     ```bash
     pip install requests pandas flask
     ```
+
 ## Kurulum ve Kullanım
 
 ### Visual Studio Code
 
 1.  **Proje Klonlama:**
-    *   GitHub'daki deponuzu bilgisayarınıza klonlayın (indirin):
-      ```bash
-        git clone https://github.com/<kullaniciadiniz>/defacto-discount-tracker.git
-      ```
-    *   Proje klasörüne gidin.
+    *   GitHub'daki depoyu bilgisayarınıza klonlayın:
+        ```bash
+        git clone https://github.com/mrcbrbn5361/defacto-discount-detector.git
+        ```
+    *   Proje klasörüne gidin:
+        ```bash
+        cd defacto-discount-detector
+        ```
 2.  **Sanal Ortam Oluşturma (Önerilir):**
-      ```bash
-      python -m venv venv
-      ```
-      *   Sanal ortamı aktif hale getirin:
+        ```bash
+        python -m venv venv
+        ```
+    *   Sanal ortamı aktif hale getirin:
         *   Windows için: `venv\Scripts\activate`
         *   macOS/Linux için: `source venv/bin/activate`
 3.  **Gerekli Kütüphaneleri Yükleme:**
@@ -67,14 +71,14 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
     ```
 3.  **Proje Klonlama:**
     ```bash
-    git clone https://github.com/<kullaniciadiniz>/defacto-discount-tracker.git
-    cd defacto-discount-tracker
+    git clone https://github.com/mrcbrbn5361/defacto-discount-detector.git
+    cd defacto-discount-detector
     ```
-4. **Sanal Ortam Oluşturma (Önerilir):**
+4.  **Sanal Ortam Oluşturma (Önerilir):**
       ```bash
       python -m venv venv
       ```
-      *   Sanal ortamı aktif hale getirin:
+    *   Sanal ortamı aktif hale getirin:
         ```bash
         source venv/bin/activate
         ```
@@ -102,12 +106,12 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
 -   Uygulama, Defacto'nun web sitesinin yapısına bağlıdır. Site yapısındaki değişiklikler uygulamayı etkileyebilir.
 -   İnternet bağlantınızın olduğundan emin olun.
 -   Termux'ta uygulamayı çalıştırırken, Termux'un IP adresini tarayıcıya girmeniz gerekebilir.
--  Proje dosyaları arasında `requirements.txt` dosyası bulunmaktadır. Bu dosya, projenin çalışması için gerekli olan kütüphaneleri listeler.
+-   Proje dosyaları arasında `requirements.txt` dosyası bulunmaktadır. Bu dosya, projenin çalışması için gerekli olan kütüphaneleri listeler.
 
 ## Katkıda Bulunma
 
-Katkılarınızı bekliyoruz! Hata düzeltmeleri, yeni özellikler veya iyileştirmeler için çekme istekleri (pull request) oluşturabilirsiniz.
+Katkılarınızı bekliyoruz! Hata düzeltmeleri, yeni özellikler veya iyileştirmeler için çekme istekleri (pull request) oluşturabilirsiniz. [Buradan](https://github.com/mrcbrbn5361/defacto-discount-detector/pulls) pull request oluşturabilirsiniz.
 
 ## Lisans
 
-Bu proje MIT Lisansı altında yayınlanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakabilirsiniz.
+Bu proje MIT Lisansı altında yayınlanmıştır. Detaylar için [LICENSE](https://github.com/mrcbrbn5361/defacto-discount-detector/blob/main/LICENSE) dosyasına bakabilirsiniz.
