@@ -25,98 +25,132 @@ HTML_TEMPLATE = """
     <title>Defacto İndirim Takip</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif; /* Roboto fontunu kullan */
+            font-family: 'Roboto', sans-serif;
             margin: 20px;
-            background-color: #f8f9fa; /* Açık gri arka plan */
+            background-color: #f8f9fa;
+            color: #343a40; /* Genel metin rengi */
+        }
+        .container {
+            max-width: 1200px; /* Maksimum genişlik */
+            margin: 0 auto; /* Ortalamak için */
+            padding: 20px; /* İç boşluk */
         }
         h1, h2 {
-            color: #343a40; /* Koyu gri başlık rengi */
+            color: #2c3e50; /* Daha belirgin başlık rengi */
+            text-align: center;
+            margin-bottom: 30px;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tabloya gölge ekle */
-            border-radius: 5px; /* Tablo köşelerini yuvarla */
-            overflow: hidden; /* Yuvarlatılmış köşeler için taşan içeriği gizle */
+        /* Form ve buton stilleri */
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: center; /* Yatayda ortala */
         }
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #dee2e6; /* Satırları ayırmak için alt çizgi */
+        .form-group label {
+            margin-right: 10px;
+            font-weight: bold; /* Etiketi daha belirgin yap */
         }
-        th {
-            background-color: #495057; /* Koyu gri başlık arka planı */
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2; /* Çift satırları renklendir */
-        }
-        tr:hover {
-            background-color: #e9ecef; /* Fare ile üzerine gelindiğinde satır rengini değiştir */
-        }
-        .error {
-            color: red;
-        }
-        label {
-            display: block; /* Etiketi blok element yap */
-            margin-bottom: 5px; /* Etiket ile input arasında boşluk bırak */
-        }
-        input[type="number"] {
-            width: 100px;
+         input[type="number"] {
+            width: 80px;
             padding: 8px;
-            border: 1px solid #ced4da; /* Input alanına kenarlık ekle */
-            border-radius: 4px; /* Input alanı köşelerini yuvarla */
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center; /* Butonları ortala */
+            margin-bottom: 20px;
         }
         button {
-            background-color: #28a745; /* Yeşil buton rengi */
+            background-color: #3498db; /* Canlı mavi buton rengi */
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-right: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease; /* Geçiş efekti */
         }
         button:hover {
-            background-color: #218838; /* Fare ile üzerine gelindiğinde buton rengini koyulaştır */
+            background-color: #2980b9; /* Hover efekti için daha koyu mavi */
         }
         button:active {
-            background-color: #1e7e34; /* Tıklandığında buton rengini daha da koyulaştır */
+            background-color: #2471a3; /* Tıklandığında daha da koyu mavi */
         }
-        #message {
+         #message {
           margin-top: 10px;
           margin-bottom: 10px;
           padding: 10px;
           border-radius: 4px;
           font-weight: bold;
+          text-align: center;
+          color: #27ae60; /* Mesaj rengi */
+          background-color: #dff0d8; /* Mesaj arka planı */
+          border: 1px solid #d0e9c6; /* Kenarlık */
+        }
+        /* Tablo stilleri */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px; /* Tablo için üst boşluk */
+        }
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0; /* Daha açık çizgi */
+        }
+        th {
+            background-color: #34495e; /* Başlık arka planı */
+            color: white;
+            font-weight: bold; /* Başlıkları kalınlaştır */
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Çift satır arka plan rengi */
+        }
+         tr:hover {
+            background-color: #ecf0f1; /* Hover rengi */
+        }
+        .error {
+            color: red;
+            text-align: center;
+             margin-top: 10px;
+             margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Defacto İndirimli Ürünler</h1>
-
-    <label for="product_count">Kaç ürün çekmek istersiniz?</label>
-    <input type="number" id="product_count" name="product_count" value="24"><br><br>
-
-    <button onclick="fetchData()">İndirimli Ürünleri Çek</button>
-    <button onclick="saveToExcel()">Excel'e Kaydet</button>
-    <button onclick="checkForDiscounts()">İndirimleri Kontrol Et</button>
-
-    <p id="message"></p>
-
-    <div id="products">
-        <h2>Ürünler</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ürün Adı</th>
-                    <th>İndirim</th>
-                    <th>Normal Fiyat</th>
-                </tr>
-            </thead>
-            <tbody id="product_list">
-                <!-- Ürünler buraya eklenecek -->
-            </tbody>
-        </table>
+    <div class="container">
+        <h1>Defacto İndirimli Ürünler</h1>
+        <div class="form-group">
+            <label for="product_count">Kaç ürün çekmek istersiniz?</label>
+            <input type="number" id="product_count" name="product_count" value="24">
+        </div>
+         <div class="button-group">
+            <button onclick="fetchData()">İndirimli Ürünleri Çek</button>
+            <button onclick="saveToExcel()">Excel'e Kaydet</button>
+            <button onclick="checkForDiscounts()">İndirimleri Kontrol Et</button>
+        </div>
+        <p id="message"></p>
+        <div id="products">
+            <h2>Ürünler</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>İndirim</th>
+                        <th>Normal Fiyat</th>
+                    </tr>
+                </thead>
+                <tbody id="product_list">
+                    <!-- Ürünler buraya eklenecek -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
