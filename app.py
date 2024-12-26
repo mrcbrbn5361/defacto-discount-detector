@@ -28,30 +28,30 @@ HTML_TEMPLATE = """
             font-family: 'Roboto', sans-serif;
             margin: 20px;
             background-color: #f8f9fa;
-            color: #343a40; /* Genel metin rengi */
+            color: #343a40;
         }
         .container {
-            max-width: 1200px; /* Maksimum genişlik */
-            margin: 0 auto; /* Ortalamak için */
-            padding: 20px; /* İç boşluk */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         h1, h2 {
-            color: #2c3e50; /* Daha belirgin başlık rengi */
+            color: #2c3e50;
             text-align: center;
             margin-bottom: 30px;
         }
-        /* Form ve buton stilleri */
+          /* Form ve buton stilleri */
         .form-group {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            justify-content: center; /* Yatayda ortala */
+            justify-content: center;
         }
         .form-group label {
             margin-right: 10px;
-            font-weight: bold; /* Etiketi daha belirgin yap */
+            font-weight: bold;
         }
-         input[type="number"] {
+        input[type="number"] {
             width: 80px;
             padding: 8px;
             border: 1px solid #ced4da;
@@ -59,68 +59,83 @@ HTML_TEMPLATE = """
             text-align: center;
         }
         .button-group {
-            display: flex;
-            justify-content: center; /* Butonları ortala */
-            margin-bottom: 20px;
+           display: flex;
+           justify-content: center;
+           margin-bottom: 20px;
+           gap: 10px;
         }
-        button {
-            background-color: #3498db; /* Canlı mavi buton rengi */
+        .button-group button {
+            background-color: #3498db;
             color: white;
             padding: 12px 24px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            margin: 0 5px;
-            transition: background-color 0.3s ease; /* Geçiş efekti */
+            transition: background-color 0.3s ease;
+         }
+        .button-group button:hover {
+            background-color: #2980b9;
         }
-        button:hover {
-            background-color: #2980b9; /* Hover efekti için daha koyu mavi */
-        }
-        button:active {
-            background-color: #2471a3; /* Tıklandığında daha da koyu mavi */
+        .button-group button:active {
+             background-color: #2471a3;
         }
          #message {
-          margin-top: 10px;
-          margin-bottom: 10px;
-          padding: 10px;
-          border-radius: 4px;
-          font-weight: bold;
-          text-align: center;
-          color: #27ae60; /* Mesaj rengi */
-          background-color: #dff0d8; /* Mesaj arka planı */
-          border: 1px solid #d0e9c6; /* Kenarlık */
-        }
-        /* Tablo stilleri */
+           margin-top: 10px;
+           margin-bottom: 10px;
+           padding: 10px;
+           border-radius: 4px;
+           font-weight: bold;
+           text-align: center;
+           color: #27ae60;
+           background-color: #dff0d8;
+           border: 1px solid #d0e9c6;
+         }
+          /* Tablo stilleri */
         table {
             border-collapse: collapse;
             width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
-            margin-top: 20px; /* Tablo için üst boşluk */
+            margin-top: 20px;
         }
         th, td {
             text-align: left;
             padding: 15px;
-            border-bottom: 1px solid #e0e0e0; /* Daha açık çizgi */
+            border-bottom: 1px solid #e0e0e0;
         }
         th {
-            background-color: #34495e; /* Başlık arka planı */
+            background-color: #34495e;
             color: white;
-            font-weight: bold; /* Başlıkları kalınlaştır */
+            font-weight: bold;
         }
         tr:nth-child(even) {
-            background-color: #f9f9f9; /* Çift satır arka plan rengi */
+            background-color: #f9f9f9;
         }
-         tr:hover {
-            background-color: #ecf0f1; /* Hover rengi */
+        tr:hover {
+            background-color: #ecf0f1;
         }
         .error {
             color: red;
             text-align: center;
-             margin-top: 10px;
-             margin-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
+        /* Dosya Yükleme Stili */
+        #fileInput {
+            display: none; /* Dosya seçme alanını gizle */
+        }
+        #upload-message {
+           margin-top: 10px;
+           margin-bottom: 10px;
+           padding: 10px;
+           border-radius: 4px;
+           font-weight: bold;
+           text-align: center;
+           color: #27ae60;
+           background-color: #dff0d8;
+           border: 1px solid #d0e9c6;
+         }
     </style>
 </head>
 <body>
@@ -130,11 +145,14 @@ HTML_TEMPLATE = """
             <label for="product_count">Kaç ürün çekmek istersiniz?</label>
             <input type="number" id="product_count" name="product_count" value="24">
         </div>
-         <div class="button-group">
-            <button onclick="fetchData()">İndirimli Ürünleri Çek</button>
-            <button onclick="saveToExcel()">Excel'e Kaydet</button>
+        <div class="button-group">
+             <button onclick="fetchData()">İndirimli Ürünleri Çek</button>
+             <button onclick="saveToExcel()">Excel'e Kaydet</button>
+             <button onclick="uploadExcel()">Excel Dosyasını Yükle</button>
             <button onclick="checkForDiscounts()">İndirimleri Kontrol Et</button>
         </div>
+          <input type="file" name="file" id="fileInput">
+           <p id="upload-message"></p>
         <p id="message"></p>
         <div id="products">
             <h2>Ürünler</h2>
@@ -151,6 +169,7 @@ HTML_TEMPLATE = """
                 </tbody>
             </table>
         </div>
+
     </div>
 
     <script>
@@ -162,7 +181,7 @@ HTML_TEMPLATE = """
                 .then(data => {
                     document.getElementById("message").innerHTML = data.message;
                     var productList = document.getElementById("product_list");
-                    productList.innerHTML = ""; // Önceki ürünleri temizle
+                    productList.innerHTML = "";
                     data.products.forEach(product => {
                         var row = productList.insertRow();
                         var cell1 = row.insertCell();
@@ -201,94 +220,38 @@ HTML_TEMPLATE = """
                     document.getElementById("message").innerHTML = "Hata: " + error;
                 });
         }
+        function uploadExcel() {
+            document.getElementById('fileInput').click();  // Dosya seçme alanını tetikle
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var file = this.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+            document.getElementById("upload-message").innerHTML = "Dosya yükleniyor...";
+            fetch('/upload_excel', {
+                method: 'POST',
+                body: formData
+            })
+           .then(response => response.json())
+            .then(data => {
+                document.getElementById("upload-message").innerHTML = data.message;
+                   if (!data.error){
+                    checkForDiscounts();
+                   }
+
+            })
+            .catch(error => {
+                document.getElementById("upload-message").innerHTML = "Hata: " + error;
+            });
+
+        });
     </script>
 </body>
 </html>
 """
 
-# Dosya yükleme formunu içeren HTML şablonu (AYNI KALDI)
-UPLOAD_FORM_HTML = """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Excel Yükle</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            color: #343a40;
-            margin-bottom: 20px;
-        }
-        form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        input[type="file"] {
-            margin-bottom: 15px;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        #message {
-            margin-top: 20px;
-            text-align: center;
-            color: #28a745;
-        }
-        .error {
-            color: red;
-        }
-    </style>
-</head>
-<body>
-    <h1>Excel Dosyası Yükle</h1>
-    <form method="POST" enctype="multipart/form-data" action="/upload_excel">
-        <input type="file" name="file">
-        <input type="submit" value="Yükle">
-    </form>
-    <p id="message"></p>
-    <script>
-      document.querySelector('form').addEventListener('submit', function(e) {
-          e.preventDefault();
-          var formData = new FormData(this);
-          document.getElementById("message").innerHTML = "Dosya yükleniyor...";
-          fetch('/upload_excel', {
-              method: 'POST',
-              body: formData
-          })
-          .then(response => response.json())
-          .then(data => {
-              document.getElementById("message").innerHTML = data.message;
-          })
-          .catch(error => {
-              document.getElementById("message").innerHTML = "Hata: " + error;
-          });
-      });
-    </script>
-</body>
-</html>
-"""
-
-# Ana sayfa
+# Dosya yükleme formu ve ana sayfa artık aynı yerde
 @app.route("/")
 def index():
     return HTML_TEMPLATE
@@ -391,9 +354,6 @@ def upload_excel():
     except Exception as e:
         return {"message": f"Excel dosyası yüklenirken bir hata oluştu: {e}", "error": True}
 
-@app.route('/upload')
-def upload_form():
-    return UPLOAD_FORM_HTML
 
 if __name__ == "__main__":
     # Uygulamayı ayrı bir iş parçacığında (thread) çalıştır
