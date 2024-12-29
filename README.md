@@ -8,14 +8,14 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
 -   **Veri Çekme:** Defacto'nun API'sinden indirimli ürünleri çeker.
 -   **Excel Kaydetme:** Çekilen ürün bilgilerini Excel dosyasına kaydeder.
 -   **İndirim Kontrolü:** Daha önce kaydedilen ürünlerin indirim durumunu kontrol eder.
--   **Çoklu Ortam Desteği:** Visual Studio Code, Pydroid3 ve Termux'ta çalıştırılabilir.
+-   **Çoklu Ortam Desteği:** Visual Studio Code, Pydroid3, Termux ve repl.it'te çalıştırılabilir.
 
 ## Gereksinimler
 
 -   Python 3.6 veya daha yüksek bir sürümü
--   `requests`, `pandas`, `flask` kütüphaneleri
+-   `requests`, `pandas`, `flask`, `openpyxl` kütüphaneleri
     ```bash
-    pip install requests pandas flask
+    pip install requests pandas flask openpyxl
     ```
 
 ## Kurulum ve Kullanım
@@ -32,6 +32,7 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
         cd defacto-discount-detector
         ```
 2.  **Sanal Ortam Oluşturma (Önerilir):**
+    *   Proje klasöründe bir sanal ortam oluşturun:
         ```bash
         python -m venv venv
         ```
@@ -39,10 +40,12 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
         *   Windows için: `venv\Scripts\activate`
         *   macOS/Linux için: `source venv/bin/activate`
 3.  **Gerekli Kütüphaneleri Yükleme:**
+    *   Sanal ortam aktifken, requirements.txt dosyasındaki kütüphaneleri yükleyin:
     ```bash
     pip install -r requirements.txt
     ```
 4.  **Uygulamayı Çalıştırma:**
+    *   Uygulamayı başlatmak için aşağıdaki komutu çalıştırın:
     ```bash
     python app.py
     ```
@@ -53,7 +56,7 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
 1.  **Pydroid3'ü Kurun:** Google Play Store'dan Pydroid3'ü indirin ve kurun.
 2.  **Gerekli Kütüphaneleri Yükleyin:**
     *   Pydroid3 uygulamasını açın.
-    *   PIP sekmesine tıklayın ve `requests`, `pandas`, `flask` kütüphanelerini kurun.
+    *   PIP sekmesine tıklayın ve `requests`, `pandas`, `flask`, `openpyxl` kütüphanelerini kurun.
 3.  **Proje Dosyalarını Pydroid3'e Aktarın:**
     *   GitHub'daki projeyi indirin (zip dosyası olarak) ve telefonunuza aktarın.
     *   Pydroid3'te `app.py` dosyasını açın.
@@ -91,6 +94,27 @@ Bu proje, Defacto'nun web sitesinden indirimli ürünleri çekerek kullanıcıya
     python app.py
     ```
     *   Uygulama çalıştığında, tarayıcınızda `http://<termux-ip>:8081` adresini ziyaret ederek arayüze erişebilirsiniz. (Termux'ta `ifconfig` komutu ile ip adresinizi öğrenebilirsiniz)
+
+### repl.it
+
+1.  **repl.it'e Giriş Yapın:** [repl.it](https://repl.it) adresine gidin ve bir hesabınızla giriş yapın veya yeni bir hesap oluşturun.
+2.  **Yeni Bir Repl Oluşturun:**
+    *   "Create +" butonuna tıklayın.
+    *   "Python" şablonunu seçin.
+    *   Projenize bir ad verin ve "Create repl" butonuna tıklayın.
+3.  **Proje Dosyalarını Yükleyin:**
+    *   GitHub deposundaki tüm proje dosyalarını ( `app.py`, `requirements.txt` vb.) repl.it'teki dosya bölümüne sürükleyip bırakarak yükleyin.
+4.  **Gerekli Kütüphaneleri Yükleyin:**
+    *   Sol taraftaki shell bölümüne aşağıdaki komutu yazarak gerekli kütüphaneleri yükleyin:
+    ```bash
+    pip install -r requirements.txt
+    ```
+5.  **Uygulamayı Çalıştırın:**
+    *   Aynı shell bölümüne aşağıdaki komutu yazarak uygulamayı çalıştırın:
+    ```bash
+    python app.py
+    ```
+    *  Uygulama çalıştıktan sonra, repl.it tarafından sağlanan URL'yi tarayıcınızda açarak uygulamaya erişebilirsiniz. URL genellikle repl'in sağ üst köşesinde görünür.
 
 ## Kullanım
 
